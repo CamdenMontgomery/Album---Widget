@@ -1,0 +1,3 @@
+QMainWindow#MainWindow {
+    background-color: #000000;
+}
