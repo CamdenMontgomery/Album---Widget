@@ -3,9 +3,11 @@ import random
 from PySide6 import QtCore, QtWidgets, QtGui
 
 from utils.ToolBarButtonFactory import ToolBarButtonFactory
+from view.components.FolderSelector import FolderSelector
 from view.components.WorkspaceChangeButton import WorkspaceChangeButton
 
 from view.components.actions.ANewFolder import ANewFolder
+from utils.Store import store
 
 class Widget(QtWidgets.QMainWindow):
     def __init__(self):
@@ -30,6 +32,9 @@ class Widget(QtWidgets.QMainWindow):
         
         self.folder_remove_button = factory.createRemoveFolderButton()
         toolbar.addWidget(self.folder_remove_button)
+        
+        self.folder_select = FolderSelector()
+        toolbar.addWidget(self.folder_select)
         
         #Bottom Half
         self.workspace_container = QtWidgets.QWidget()

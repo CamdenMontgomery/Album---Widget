@@ -1,6 +1,5 @@
 from PySide6 import QtWidgets, QtGui
-from global_store import store
-
+from utils.Store import store
 
 class ToolbarButton(QtWidgets.QPushButton): 
     def __init__(self, icon, action_type):
