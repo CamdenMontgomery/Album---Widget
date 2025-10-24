@@ -6,6 +6,7 @@ from utils.ToolBarButtonFactory import ToolBarButtonFactory
 from view.components.FolderSelector import FolderSelector
 from view.components.WorkspaceChangeButton import WorkspaceChangeButton
 
+from view.components.WorkspaceLabel import WorkspaceLabel
 from view.components.actions.ANewFolder import ANewFolder
 from utils.Store import store
 
@@ -40,7 +41,7 @@ class Widget(QtWidgets.QMainWindow):
         self.workspace_container = QtWidgets.QWidget()
         self.workspace_layout = QtWidgets.QHBoxLayout(self.workspace_container)
         
-        self.workspace_label = QtWidgets.QLabel("Workspace: None")
+        self.workspace_label = WorkspaceLabel()
         self.workspace_layout.addWidget(self.workspace_label)
         
         self.workspace_change_button = WorkspaceChangeButton()
