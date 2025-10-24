@@ -1,8 +1,8 @@
 from PySide6 import QtWidgets, QtGui
 from enums.EActionTypes import EActionTypes
-from utils.Store import store
+from utils.UseStore import UseStore
 
-class FolderSelector(QtWidgets.QComboBox):
+class FolderSelector(QtWidgets.QComboBox, UseStore):
     def __init__(self, parent=None):
         super().__init__(parent)
 
@@ -15,17 +15,17 @@ class FolderSelector(QtWidgets.QComboBox):
         self.currentIndexChanged.connect(self.on_folder_changed)
         
         #incoming changes
-        store.state_changed.connect(self.on_state_changed)
+        self.store_.state_changed.connect(self.on_state_changed)
 
 
     def on_folder_changed(self, index):
         folder_path = self.itemText(index)
-        store.dispatch(EActionTypes.FOLDER_CHANGED, folder_path)
+        self.store_.dispatch(EActionTypes.FOLDER_CHANGED, folder_path)
         
         
     def on_state_changed(self):
         self.clear()
-        for folder in store.state["workspace_folders"]:
+        for folder in self.store_.state["workspace_folders"]:
             self.addItem(folder)
         
     
