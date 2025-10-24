@@ -39,6 +39,7 @@ class Widget(QtWidgets.QMainWindow):
         
         #Bottom Half
         self.workspace_container = QtWidgets.QWidget()
+        self.workspace_container.setObjectName("WorkspaceContainer")
         self.workspace_layout = QtWidgets.QHBoxLayout(self.workspace_container)
         
         self.workspace_label = WorkspaceLabel()
@@ -47,8 +48,7 @@ class Widget(QtWidgets.QMainWindow):
         self.workspace_change_button = WorkspaceChangeButton()
         self.workspace_layout.addWidget(self.workspace_change_button)
         
-        self.workspace_new_button = QtWidgets.QPushButton("new")
-        self.workspace_layout.addWidget(self.workspace_new_button)
+
         
         self.setCentralWidget(self.workspace_container)
         

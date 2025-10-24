@@ -4,6 +4,7 @@ from utils.Store import store
 class WorkspaceLabel(QtWidgets.QLabel):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setObjectName("workspaceLabel")
         self.setText("Workspace: Select a new workspace")
         self.setStatusTip("Current Workspace")
         store.state_changed.connect(self.on_state_changed)
