@@ -1,2 +1,4 @@
 class EActionTypes:
     OPEN_WORKSPACE_SELECTOR = 1
+    ADD_FOLDER = 2
+    REMOVE_FOLDER = 3

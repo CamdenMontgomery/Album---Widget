@@ -2,6 +2,7 @@ import sys
 import random
 from PySide6 import QtCore, QtWidgets, QtGui
 
+from utils.ToolBarButtonFactory import ToolBarButtonFactory
 from view.components.WorkspaceChangeButton import WorkspaceChangeButton
 
 from view.components.actions.ANewFolder import ANewFolder
@@ -23,8 +24,12 @@ class Widget(QtWidgets.QMainWindow):
         toolbar.setObjectName('Toolbar')
         self.addToolBar(toolbar)
         
-        self.folder_add_button = ANewFolder()
-        toolbar.addAction(self.folder_add_button)
+        factory = ToolBarButtonFactory()
+        self.folder_add_button = factory.createAddFolderButton()
+        toolbar.addWidget(self.folder_add_button)
+        
+        self.folder_remove_button = factory.createRemoveFolderButton()
+        toolbar.addWidget(self.folder_remove_button)
         
         #Bottom Half
         self.workspace_container = QtWidgets.QWidget()
