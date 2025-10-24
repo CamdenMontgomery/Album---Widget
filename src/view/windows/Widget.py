@@ -9,6 +9,9 @@ class Widget(QtWidgets.QMainWindow):
         super().__init__()
 
         self.setWindowTitle("Album")
+        self.resize(800, 24)
+        self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint)
+        
         toolbar = QtWidgets.QToolBar("Tools")
         toolbar.setIconSize(QtCore.QSize(24, 24))
         toolbar.setMovable(False)
