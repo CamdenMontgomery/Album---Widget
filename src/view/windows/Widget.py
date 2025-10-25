@@ -16,7 +16,7 @@ class Widget(QtWidgets.QMainWindow):
         super().__init__()
 
         self.setWindowTitle("Album")
-        self.resize(1200, 24)
+        self.resize(1290, 24)
         self.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
         self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint)
         self.setObjectName("MainWindow")

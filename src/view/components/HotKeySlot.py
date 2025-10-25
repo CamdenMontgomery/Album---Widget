@@ -1,20 +1,25 @@
-from PySide6 import QtWidgets
+
 from utils.UseStore import UseStore
+from PySide6.QtCore import Qt
+from PySide6 import QtWidgets, QtCore
 
 class HotKeySlot(QtWidgets.QWidget, UseStore):
     def __init__(self, key='1', parent=None):
         super().__init__(parent)
         self.setObjectName("HotKeySlot")
-        self.key = key
+        self.setAttribute(Qt.WA_StyledBackground, True)
         
+        self.key = key
         self.layout = QtWidgets.QHBoxLayout(self)
         
         self.icon = QtWidgets.QLabel(key, self)
-        self.icon.setObjectName("hotKeyIcon")
+        self.icon.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.icon.setObjectName("HotKeyIcon")
         self.layout.addWidget(self.icon)
         
-        self.label = QtWidgets.QLabel('', self)
-        self.label.setObjectName("hotKeyLabel")
+        self.label = QtWidgets.QLabel('Empty', self)
+        self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.label.setObjectName("HotKeyLabel")
         self.layout.addWidget(self.label)
         
         self.store_.state_changed.connect(self.on_state_changed)

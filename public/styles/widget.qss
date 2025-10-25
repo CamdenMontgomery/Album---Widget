@@ -71,3 +71,34 @@ QMainWindow#MainWindow {
     margin-right: 20px;
     width: 168px
 }
+
+
+
+#HotKeySlot{
+    background-color: #F58B66;
+    border-radius: 4px;
+    max-height: 36px;
+    min-width: 120px;
+    color: #FFFFFF;
+
+}
+
+#HotKeyLabel{
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    color: #FFFFFF;
+}
+
+#HotKeyIcon{
+    color: #F58B66;
+    background-color: white;
+    font-size: 10px;
+    font-weight: 900;
+    font-family: 'Nunito', sans-serif;
+    border-radius: 4px;
+    min-width: 17px;
+    max-width: 17px;
+    max-height: 17px;
+    text-align: center;
+}
