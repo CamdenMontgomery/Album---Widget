@@ -10,7 +10,7 @@ from PySide6.QtGui import QCursor, QGuiApplication
 
        
         
-REVEAL_THRESHOLD = 100
+REVEAL_THRESHOLD = 10
 HIDE_THRESHOLD = 400
         
         
@@ -25,9 +25,10 @@ class HoverStateManager(QObject, UseStore):
         pos: QPoint = QCursor.pos()
         y = pos.y()
         screen_height = QGuiApplication.primaryScreen().size().height()
-        print(y)
+
 
         if not self.store_.state["show_widget"] and y >= screen_height - REVEAL_THRESHOLD:
             self.store_.dispatch(EActionTypes.SHOW_WIDGET, None)
+
         elif self.store_.state["show_widget"] and y < screen_height - HIDE_THRESHOLD:
             self.store_.dispatch(EActionTypes.HIDE_WIDGET, None)

@@ -13,6 +13,9 @@ from view.components.HotKeySlots import HotKeySlots
 from PySide6.QtWidgets import QApplication
 from utils.UseStore import UseStore
 
+
+from PySide6.QtCore import QPropertyAnimation, QRect, QEasingCurve, QPoint, QParallelAnimationGroup
+
 class Widget(QtWidgets.QMainWindow, UseStore):
     def __init__(self):
         super().__init__()
@@ -96,16 +99,66 @@ class Widget(QtWidgets.QMainWindow, UseStore):
         
         
         
-        
-        
-        self.store_.hide_widget.connect(self.hide)
-        self.store_.show_widget.connect(self.show)
+        self.store_.hide_widget.connect(self.slide_out)
+        self.store_.show_widget.connect(self.slide_in)
         
 
         
-        def hide(self):
-            self.move(screen.width() * 0.5 - self.width() * 0.5, screen.height() * 1.2 - self.height() * 0.5)
-            
-        def show(self):
-            self.move(screen.width() * 0.5 - self.width() * 0.5, screen.height() * 0.8 - self.height() * 0.5)
+    def slide_out(self):
+
+        #Store animation in self to avoid garbage collection
+        screen = QApplication.primaryScreen().geometry()
+        
+        start_pos = self.pos()
+        end_pos = QPoint(screen.width() * 0.5 - self.width() * 0.5, screen.height() * 1.2 - self.height() * 0.5)
+
+        self.move_anim = QPropertyAnimation(self, b"pos")
+        self.move_anim.setDuration(300)                  
+        self.move_anim.setStartValue(start_pos)       
+        self.move_anim.setEndValue(end_pos)
+        self.move_anim.setEasingCurve(QEasingCurve.Type.Linear)
+   
+        
+        self.fade_anim = QPropertyAnimation(self, b"windowOpacity")
+        self.fade_anim.setDuration(400)
+        self.fade_anim.setStartValue(1.0)
+        self.fade_anim.setEndValue(0.0)
+        self.fade_anim.setEasingCurve(QEasingCurve.Type.Linear)
+        
+        
+        
+        self.anim_group = QParallelAnimationGroup()
+        self.anim_group.addAnimation(self.move_anim)
+        self.anim_group.addAnimation(self.fade_anim)
+        self.anim_group.start()
+
+        
+    def slide_in(self):
+        
+        
+        #Store animation in self to avoid garbage collection
+        screen = QApplication.primaryScreen().geometry()
+        
+        start_pos = self.pos()
+        end_pos = QPoint(screen.width() * 0.5 - self.width() * 0.5, screen.height() * 0.8 - self.height() * 0.5)
+
+        self.move_anim = QPropertyAnimation(self, b"pos")
+        self.move_anim.setDuration(300)                  
+        self.move_anim.setStartValue(start_pos)       
+        self.move_anim.setEndValue(end_pos)
+        self.move_anim.setEasingCurve(QEasingCurve.Type.Linear)
+   
+        
+        self.fade_anim = QPropertyAnimation(self, b"windowOpacity")
+        self.fade_anim.setDuration(400)
+        self.fade_anim.setStartValue(0.0)
+        self.fade_anim.setEndValue(1.0)
+        self.fade_anim.setEasingCurve(QEasingCurve.Type.Linear)
+        
+        
+        
+        self.anim_group = QParallelAnimationGroup()
+        self.anim_group.addAnimation(self.move_anim)
+        self.anim_group.addAnimation(self.fade_anim)
+        self.anim_group.start()
 

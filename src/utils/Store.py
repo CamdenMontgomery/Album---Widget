@@ -58,10 +58,17 @@ class Store(QObject):
                 print(self.state)
             
             case EActionTypes.HIDE_WIDGET:
+                copy = self.state.copy()
+                copy['show_widget'] = False
                 self.hide_widget.emit()
+                self.state = copy                
+                
                 
             case EActionTypes.SHOW_WIDGET:
+                copy = self.state.copy()
+                copy['show_widget'] = True
                 self.show_widget.emit()
+                self.state = copy  
                 
                  
 #Globally accessible store instance
