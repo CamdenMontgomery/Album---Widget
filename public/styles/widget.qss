@@ -28,7 +28,6 @@ QMainWindow#MainWindow {
     height: 31px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    
 }
 
 #workspaceLabel{
@@ -36,7 +35,7 @@ QMainWindow#MainWindow {
     font-size: 10px;
     font-weight: 600;
     font-family: 'Nunito';
-
+    margin-left: 10px;
 }
 
 
@@ -56,6 +55,7 @@ QMainWindow#MainWindow {
     text-decoration: underline;
     font-family: 'Nunito';
     font-size: 10px;
+    margin-right: 10px
 }
 
 #FolderSelector{
@@ -66,7 +66,7 @@ QMainWindow#MainWindow {
     font-weight: 900;
     font-family: 'Nunito';
     font-size: 14px;
-    border-bottom: 4px solid #F58B66;
+    border-bottom: 4px solid #a9f58c66;
     margin-left: 20px;
     margin-right: 20px;
     width: 168px
