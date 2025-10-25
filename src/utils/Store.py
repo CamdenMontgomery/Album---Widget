@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QApplication, QPushButton, QFileDialog
 from enums.EActionTypes import EActionTypes
 import os
 
+from view.windows.Note import Note
 from view.windows.Snipping import SnippingOverlay
 
 MODEL = {
@@ -85,6 +86,13 @@ class Store(QObject):
                 save_path = os.path.join(self.state['workspace_dir'],self.state['current_folder_name'])
                 self.snipping_overlay = SnippingOverlay(path=save_path)
                 self.snipping_overlay.show()
+                
+                
+            case EActionTypes.OPEN_NOTES:
+                if not self.state['ready']: return
+                save_path = os.path.join(self.state['workspace_dir'],self.state['current_folder_name'])
+                self.note = Note(path=save_path)
+                self.note.show()
                 
                  
 #Globally accessible store instance
