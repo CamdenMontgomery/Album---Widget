@@ -12,6 +12,14 @@ QMainWindow#MainWindow {
     border-top-right-radius: 8px;
 }
 
+#Toolbar::separator{
+    height: 3px;
+    width: 1px;
+    background-color: #09000000;
+    margin-top: 13px;
+    margin-bottom: 13px;
+}
+
 #WorkspaceContainer{
     font-family: 'Nunito', sans-serif;
     background-color: #F6F6F6;
@@ -28,7 +36,7 @@ QMainWindow#MainWindow {
     font-size: 10px;
     font-weight: 600;
     font-family: 'Nunito';
-    width: 
+
 }
 
 
@@ -59,4 +67,7 @@ QMainWindow#MainWindow {
     font-family: 'Nunito';
     font-size: 14px;
     border-bottom: 4px solid #F58B66;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 168px
 }
