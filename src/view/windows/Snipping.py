@@ -38,7 +38,6 @@ class SnippingOverlay(QtWidgets.QWidget):
         painter.fillRect(self.rect(), OVERLAY_COLOR)
         
         #Draw Transparent Overlay
-        painter.setPen(QPen(Qt.red, 2))
         selection_rect = QRect(self.snip_top_left, self.snip_bottom_right)
         
         #Draw Selection Box
