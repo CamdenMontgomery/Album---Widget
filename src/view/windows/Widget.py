@@ -20,6 +20,7 @@ class Widget(QtWidgets.QMainWindow):
         self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint)
         self.setObjectName("MainWindow")
         
+        
         #Top Half
         toolbar = QtWidgets.QToolBar("Tools")
         toolbar.setIconSize(QtCore.QSize(24, 24))
@@ -27,15 +28,43 @@ class Widget(QtWidgets.QMainWindow):
         toolbar.setObjectName('Toolbar')
         self.addToolBar(toolbar)
         
+        #--New Folder Button
         factory = ToolBarButtonFactory()
         self.folder_add_button = factory.createAddFolderButton()
         toolbar.addWidget(self.folder_add_button)
         
+        #--Separator Bar
+        toolbar.addSeparator()
+
+        #--Folder Selector
+        self.folder_select = FolderSelector()
+        toolbar.addWidget(self.folder_select)
+        
+        #--Remove Folder Button
         self.folder_remove_button = factory.createRemoveFolderButton()
         toolbar.addWidget(self.folder_remove_button)
         
-        self.folder_select = FolderSelector()
-        toolbar.addWidget(self.folder_select)
+        #--Pin Folder Button
+        self.folder_pin_button = factory.createPinFolderButton()
+        toolbar.addWidget(self.folder_pin_button)
+        
+        #--Separator Bar
+        toolbar.addSeparator()
+        
+        #--Snapshot Button
+        self.snapshot_button = factory.createSnapshotButton()
+        toolbar.addWidget(self.snapshot_button)
+        
+        #--Note Button
+        self.note_button = factory.createNoteButton()
+        toolbar.addWidget(self.note_button)
+        
+        #--Flashcard Button
+        self.flashcard_button = factory.createFlashcardButton()
+        toolbar.addWidget(self.flashcard_button)
+        
+        #--Separator Bar
+        toolbar.addSeparator()
         
         #Bottom Half
         self.workspace_container = QtWidgets.QWidget()
