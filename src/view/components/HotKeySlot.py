@@ -17,7 +17,7 @@ class HotKeySlot(QtWidgets.QWidget, UseStore):
         self.icon.setObjectName("HotKeyIcon")
         self.layout.addWidget(self.icon)
         
-        self.label = QtWidgets.QLabel('Empty', self)
+        self.label = QtWidgets.QLabel('None', self)
         self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label.setObjectName("HotKeyLabel")
         self.layout.addWidget(self.label)

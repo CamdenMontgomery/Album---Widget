@@ -8,7 +8,7 @@ MODEL = {
     "workspace_dir": None,
     "workspace_folders": [],
     "current_folder_name": None,
-    "hotkey_folders": {'1': 'test', '2': None, '3': None, '4': None, '5': None},
+    "hotkey_folders": {'1': 'None', '2': 'None', '3': 'None', '4': 'None', '5': 'None'},
     "show_widget": True
 }
 
