@@ -4,7 +4,9 @@ from PySide6.QtWidgets import QApplication
 from PySide6.QtGui import QPainter, QColor, QPen
 import os
 from datetime import datetime
-from PySide6.QtWidgets import QWidget, QGraphicsDropShadowEffect 
+from PySide6.QtWidgets import QWidget, QGraphicsDropShadowEffect
+
+from view.components.GrabHandle import GrabHandle 
 
 
 
@@ -51,6 +53,11 @@ class Note(QtWidgets.QWidget):
         self.close_button.clicked.connect(lambda: self.close())
         self.header_layout.addWidget(self.close_button)
         
+        
+        #-- Grab Handle
+        self.grab_handle = GrabHandle(self)
+        self.header_layout.addWidget(self.grab_handle)
+
         self.window_layout.addWidget(self.header)
         
         #Body

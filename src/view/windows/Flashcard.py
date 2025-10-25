@@ -8,6 +8,7 @@ from PySide6.QtWidgets import QWidget, QGraphicsDropShadowEffect
 
 
 from utils.cleaning import cleanFlashcardContent
+from view.components.GrabHandle import GrabHandle
 
 
 class Flashcard(QtWidgets.QWidget):
@@ -52,6 +53,11 @@ class Flashcard(QtWidgets.QWidget):
         self.close_button.setCursor(Qt.PointingHandCursor)
         self.close_button.clicked.connect(lambda: self.close())
         self.header_layout.addWidget(self.close_button)
+        
+        
+        #-- Grab Handle
+        self.grab_handle = GrabHandle(self)
+        self.header_layout.addWidget(self.grab_handle)
         
         self.window_layout.addWidget(self.header)
         

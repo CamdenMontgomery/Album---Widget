@@ -1,0 +1,5 @@
+#GrabHandle{
+    background-color: transparent;
+    border: none;
+    max-width: 24px;
+}
