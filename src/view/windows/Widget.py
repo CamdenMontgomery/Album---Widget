@@ -9,13 +9,14 @@ from view.components.WorkspaceChangeButton import WorkspaceChangeButton
 from view.components.WorkspaceLabel import WorkspaceLabel
 from view.components.actions.ANewFolder import ANewFolder
 from utils.Store import store
+from view.components.HotKeySlots import HotKeySlots
 
 class Widget(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
 
         self.setWindowTitle("Album")
-        self.resize(800, 24)
+        self.resize(1200, 24)
         self.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
         self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint)
         self.setObjectName("MainWindow")
@@ -65,6 +66,10 @@ class Widget(QtWidgets.QMainWindow):
         
         #--Separator Bar
         toolbar.addSeparator()
+        
+        #--Hotkey Slots
+        self.hotkey_slots = HotKeySlots()
+        toolbar.addWidget(self.hotkey_slots)
         
         #Bottom Half
         self.workspace_container = QtWidgets.QWidget()
