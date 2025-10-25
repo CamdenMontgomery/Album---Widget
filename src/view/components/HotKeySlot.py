@@ -24,5 +24,18 @@ class HotKeySlot(QtWidgets.QWidget, UseStore):
         
         self.store_.state_changed.connect(self.on_state_changed)
         
+    def setStyleFromState(self, active: bool):
+        self.label.setObjectName("HotKeyLabelActive" if active else "HotKeyLabel")
+        self.label.style().unpolish(self.label)
+        self.label.style().polish(self.label)
+        
+        self.setObjectName("HotKeySlotActive" if active else "HotKeySlot")
+        self.style().unpolish(self)
+        self.style().polish(self)
+        
+        self.setObjectName("HotKeySlotActive" if active else "HotKeySlot")
+        self.style().unpolish(self)
+        self.style().polish(self)
+        
     def on_state_changed(self):
         self.label.setText(self.store_.state['hotkey_folders'][self.key])
