@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QApplication, QPushButton, QFileDialog
 from enums.EActionTypes import EActionTypes
 import os
 
+from view.windows.Flashcard import Flashcard
 from view.windows.Note import Note
 from view.windows.Snipping import SnippingOverlay
 
@@ -93,6 +94,12 @@ class Store(QObject):
                 save_path = os.path.join(self.state['workspace_dir'],self.state['current_folder_name'])
                 self.note = Note(path=save_path)
                 self.note.show()
+                
+            case EActionTypes.NEW_FLASHCARD:
+                if not self.state['ready']: return
+                save_path = os.path.join(self.state['workspace_dir'],self.state['current_folder_name'])
+                self.flashcard = Flashcard(path=save_path)
+                self.flashcard.show()
                 
                  
 #Globally accessible store instance
