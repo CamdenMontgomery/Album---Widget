@@ -22,7 +22,7 @@ QMainWindow#MainWindow {
 
 #WorkspaceContainer{
     font-family: 'Nunito', sans-serif;
-    background-color: #F6F6F6;
+    background-color: #f6f6f6f6;
     border-radius: 10px 0px 0px 10px;
     opacity: 0.96;
     height: 31px;
