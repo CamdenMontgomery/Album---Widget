@@ -8,6 +8,7 @@ class FolderSelector(QtWidgets.QComboBox, UseStore):
         self.setObjectName("FolderSelector")
 
         #configuration
+        self.setPlaceholderText('Select Folder...')
         self.setStatusTip("Select a folder")
         self.setEditable(False)
         self.setInsertPolicy(QtWidgets.QComboBox.NoInsert)
