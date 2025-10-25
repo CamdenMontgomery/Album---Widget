@@ -10,13 +10,19 @@ from view.components.WorkspaceLabel import WorkspaceLabel
 from view.components.actions.ANewFolder import ANewFolder
 from utils.Store import store
 from view.components.HotKeySlots import HotKeySlots
+from PySide6.QtWidgets import QApplication
 
 class Widget(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
 
         self.setWindowTitle("Album")
+        
         self.resize(1290, 24)
+        screen = QApplication.primaryScreen().geometry()
+        self.move(screen.width() * 0.5 - self.width() * 0.5, screen.height() * 0.8 - self.height() * 0.5)
+        
+        
         self.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
         self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint | QtCore.Qt.WindowType.WindowStaysOnTopHint)
         self.setObjectName("MainWindow")
