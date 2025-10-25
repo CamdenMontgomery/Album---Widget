@@ -11,7 +11,7 @@ from PySide6.QtGui import QCursor, QGuiApplication
        
         
 REVEAL_THRESHOLD = 10
-HIDE_THRESHOLD = 400
+HIDE_THRESHOLD = 800
         
         
 class HoverStateManager(QObject, UseStore):

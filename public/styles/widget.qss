@@ -45,8 +45,15 @@ QMainWindow#MainWindow {
     height: 24px;
     width: 24px;
     color: #292A2B;
-    padding: 20px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 4px
 }
+
+#ToolBarButton:hover{
+    background-color: #f5f5f5;
+}
+
 
 #ChangeButton{
     background-color: transparent;
