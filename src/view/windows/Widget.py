@@ -11,8 +11,9 @@ from view.components.actions.ANewFolder import ANewFolder
 from utils.Store import store
 from view.components.HotKeySlots import HotKeySlots
 from PySide6.QtWidgets import QApplication
+from utils.UseStore import UseStore
 
-class Widget(QtWidgets.QMainWindow):
+class Widget(QtWidgets.QMainWindow, UseStore):
     def __init__(self):
         super().__init__()
 
@@ -89,11 +90,22 @@ class Widget(QtWidgets.QMainWindow):
         
         self.workspace_change_button = WorkspaceChangeButton()
         self.workspace_layout.addWidget(self.workspace_change_button)
-        
-
+    
         
         self.setCentralWidget(self.workspace_container)
         
+        
+        
+        
+        
+        self.store_.hide_widget.connect(self.hide)
+        self.store_.show_widget.connect(self.show)
+        
 
         
+        def hide(self):
+            self.move(screen.width() * 0.5 - self.width() * 0.5, screen.height() * 1.2 - self.height() * 0.5)
+            
+        def show(self):
+            self.move(screen.width() * 0.5 - self.width() * 0.5, screen.height() * 0.8 - self.height() * 0.5)
 

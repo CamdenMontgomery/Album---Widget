@@ -1,4 +1,6 @@
 from PySide6 import QtWidgets
+from PySide6.QtCore import Qt
+from PySide6 import QtCore
 from PySide6.QtCore import Signal
 from enums.EActionTypes import EActionTypes
 from utils.Store import store
@@ -12,6 +14,8 @@ class WorkspaceChangeButton(QtWidgets.QPushButton):
         self.setText("change")
         self.setShortcut("Ctrl+W")
         self.setStatusTip("Select a new workspace")
+        self.setCursor(Qt.PointingHandCursor)
+        
         self.clicked.connect(self.trigger)
         
     def trigger(self):

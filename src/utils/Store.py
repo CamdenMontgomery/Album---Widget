@@ -9,10 +9,14 @@ MODEL = {
     "workspace_folders": [],
     "current_folder_name": None,
     "hotkey_folders": {'1': 'test', '2': None, '3': None, '4': None, '5': None},
+    "show_widget": True
 }
 
 
 class Store(QObject):
+    
+    show_widget = Signal()
+    hide_widget = Signal()
     
     state_changed = Signal()
     
@@ -52,7 +56,12 @@ class Store(QObject):
                 self.state = copy
                 self.state_changed.emit()
                 print(self.state)
+            
+            case EActionTypes.HIDE_WIDGET:
+                self.hide_widget.emit()
                 
+            case EActionTypes.SHOW_WIDGET:
+                self.show_widget.emit()
                 
                  
 #Globally accessible store instance

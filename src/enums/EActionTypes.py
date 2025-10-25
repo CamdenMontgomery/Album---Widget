@@ -7,3 +7,5 @@ class EActionTypes:
     BEGIN_SNAPSHOT = 6
     OPEN_NOTES = 7
     NEW_FLASHCARD = 8
+    SHOW_WIDGET = 9
+    HIDE_WIDGET = 10
