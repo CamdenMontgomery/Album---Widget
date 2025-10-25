@@ -5,6 +5,7 @@ from utils.UseStore import UseStore
 class FolderSelector(QtWidgets.QComboBox, UseStore):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setObjectName("FolderSelector")
 
         #configuration
         self.setStatusTip("Select a folder")

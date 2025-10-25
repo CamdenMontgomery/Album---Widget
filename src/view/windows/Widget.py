@@ -45,6 +45,8 @@ class Widget(QtWidgets.QMainWindow):
         self.workspace_label = WorkspaceLabel()
         self.workspace_layout.addWidget(self.workspace_label)
         
+        self.workspace_layout.addStretch()
+        
         self.workspace_change_button = WorkspaceChangeButton()
         self.workspace_layout.addWidget(self.workspace_change_button)
         

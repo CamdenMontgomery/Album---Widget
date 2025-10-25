@@ -7,7 +7,9 @@ QMainWindow#MainWindow {
     background-color: #ffffff;
     border-radius: 0px 10px 10px 0px;
     height: 62px;
-    color: #292A2B
+    color: #292A2B;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 #WorkspaceContainer{
@@ -15,12 +17,46 @@ QMainWindow#MainWindow {
     background-color: #F6F6F6;
     border-radius: 10px 0px 0px 10px;
     opacity: 0.96;
-    height: 31px
+    height: 31px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    
 }
 
 #workspaceLabel{
     color: #7A7A7A;
-    font-size: 20px;
-    font-family: 'Nunito';
+    font-size: 10px;
     font-weight: 600;
+    font-family: 'Nunito';
+    width: 
+}
+
+
+#ToolBarButton{
+    background-color: transparent;
+    border: none;
+    height: 24px;
+    width: 24px;
+    color: #292A2B;
+    padding: 20px;
+}
+
+#ChangeButton{
+    background-color: transparent;
+    border: none;
+    color: #575757;
+    text-decoration: underline;
+    font-family: 'Nunito';
+    font-size: 10px;
+}
+
+#FolderSelector{
+    background-color: transparent;
+    border: none;
+    color: #444444;
+    padding: 10px;
+    font-weight: 900;
+    font-family: 'Nunito';
+    font-size: 14px;
+    border-bottom: 4px solid #F58B66;
 }

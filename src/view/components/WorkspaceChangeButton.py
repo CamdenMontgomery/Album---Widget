@@ -7,7 +7,9 @@ class WorkspaceChangeButton(QtWidgets.QPushButton):
 
     def __init__(self, parent=None):
         super().__init__("", parent)
+        self.setObjectName("ChangeButton")
 
+        self.setText("change")
         self.setShortcut("Ctrl+W")
         self.setStatusTip("Select a new workspace")
         self.clicked.connect(self.trigger)
