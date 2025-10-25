@@ -21,8 +21,8 @@ class FolderSelector(QtWidgets.QComboBox, UseStore):
 
 
     def on_folder_changed(self, index):
-        folder_path = self.itemText(index)
-        self.store_.dispatch(EActionTypes.FOLDER_CHANGED, folder_path)
+        folder = self.itemText(index)
+        self.store_.dispatch(EActionTypes.FOLDER_CHANGED, folder)
         
         
     def on_state_changed(self):

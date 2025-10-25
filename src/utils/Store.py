@@ -4,7 +4,10 @@ from PySide6.QtWidgets import QApplication, QPushButton, QFileDialog
 from enums.EActionTypes import EActionTypes
 import os
 
+from view.windows.Snipping import SnippingOverlay
+
 MODEL = {
+    "ready" : False,
     "workspace_dir": None,
     "workspace_folders": [],
     "current_folder_name": None,
@@ -56,6 +59,13 @@ class Store(QObject):
                 self.state = copy
                 self.state_changed.emit()
                 print(self.state)
+                
+            case EActionTypes.FOLDER_CHANGED:
+                #Once a folder is selected the user can start working
+                copy = self.state.copy()
+                copy['current_folder_name'] = payload
+                copy['ready'] = True
+                self.state = copy   
             
             case EActionTypes.HIDE_WIDGET:
                 copy = self.state.copy()
@@ -69,6 +79,12 @@ class Store(QObject):
                 copy['show_widget'] = True
                 self.show_widget.emit()
                 self.state = copy  
+                
+            case EActionTypes.BEGIN_SNAPSHOT:
+                if not self.state['ready']: return
+                save_path = os.path.join(self.state['workspace_dir'],self.state['current_folder_name'])
+                self.snipping_overlay = SnippingOverlay(path=save_path)
+                self.snipping_overlay.show()
                 
                  
 #Globally accessible store instance
