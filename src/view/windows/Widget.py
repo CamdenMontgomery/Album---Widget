@@ -4,6 +4,7 @@ from PySide6 import QtCore, QtWidgets, QtGui
 
 from utils.ToolBarButtonFactory import ToolBarButtonFactory
 from view.components.FolderSelector import FolderSelector
+from view.components.PinButton import PinButton
 from view.components.WorkspaceChangeButton import WorkspaceChangeButton
 
 from view.components.WorkspaceLabel import WorkspaceLabel
@@ -56,7 +57,7 @@ class Widget(QtWidgets.QMainWindow, UseStore):
         toolbar.addWidget(self.folder_remove_button)
         
         #--Pin Folder Button
-        self.folder_pin_button = factory.createPinFolderButton()
+        self.folder_pin_button = PinButton()
         toolbar.addWidget(self.folder_pin_button)
         
         #--Separator Bar

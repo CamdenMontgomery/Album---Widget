@@ -3,7 +3,7 @@ class EActionTypes:
     ADD_FOLDER = 2
     REMOVE_FOLDER = 3
     FOLDER_CHANGED = 4
-    PIN_FOLDER = 5
+    TOGGLE_PIN = 5
     BEGIN_SNAPSHOT = 6
     OPEN_NOTES = 7
     NEW_FLASHCARD = 8

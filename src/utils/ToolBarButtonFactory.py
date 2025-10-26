@@ -12,8 +12,6 @@ class ToolBarButtonFactory:
     def createRemoveFolderButton(self):
         return ToolbarButton(self.prefix_path + "remove_folder.svg", EActionTypes.REMOVE_FOLDER)
     
-    def createPinFolderButton(self):
-        return ToolbarButton(self.prefix_path + "pin_folder.svg", EActionTypes.PIN_FOLDER)
     
     def createSnapshotButton(self):
         return ToolbarButton(self.prefix_path + "take_snapshot.svg", EActionTypes.BEGIN_SNAPSHOT)

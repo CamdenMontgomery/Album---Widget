@@ -67,7 +67,9 @@ class Store(QObject):
                 copy = self.state.copy()
                 copy['current_folder_name'] = payload
                 copy['ready'] = True
-                self.state = copy   
+                self.state = copy  
+                print('e',self.state)
+                self.state_changed.emit()
             
             case EActionTypes.HIDE_WIDGET:
                 copy = self.state.copy()
@@ -100,6 +102,31 @@ class Store(QObject):
                 save_path = os.path.join(self.state['workspace_dir'],self.state['current_folder_name'])
                 self.flashcard = Flashcard(path=save_path)
                 self.flashcard.show()
+                
+            #Toggle whether current folder is in the hotkeys or not
+            case EActionTypes.TOGGLE_PIN:
+                
+                hotkey_folders = self.state['hotkey_folders']
+                current_folder = self.state['current_folder_name']
+                folders = list(hotkey_folders.values())
+                
+                #If hotkey exists, remove it
+                if current_folder in folders:
+                    index = folders.index(current_folder)
+                    copy = self.state.copy()
+                    copy['hotkey_folders'][str(index + 1)] = "None"
+                    self.state = copy   
+                     
+                else:
+                    index = folders.index("None")
+                    copy = self.state.copy()
+                    copy['hotkey_folders'][str(index + 1)] = current_folder
+                    self.state = copy   
+                    
+                print(self.state)
+                self.state_changed.emit()
+                    
+                    
                 
                  
 #Globally accessible store instance

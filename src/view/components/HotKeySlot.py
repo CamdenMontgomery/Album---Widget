@@ -22,7 +22,7 @@ class HotKeySlot(QtWidgets.QWidget, UseStore):
         self.label.setObjectName("HotKeyLabel")
         self.layout.addWidget(self.label)
         
-        self.store_.state_changed.connect(self.on_state_changed)
+
         
     def setStyleFromState(self, active: bool):
         self.label.setObjectName("HotKeyLabelActive" if active else "HotKeyLabel")
