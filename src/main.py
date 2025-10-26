@@ -1,6 +1,7 @@
 import sys
 import random
 from PySide6 import QtCore, QtWidgets, QtGui
+from utils.hotkeys import HotKeyManager
 from utils.styleloader import loadStylesheetsFromFolder
 from view.windows.Widget import Widget
 from PySide6.QtGui import QFontDatabase, QFont
@@ -11,7 +12,10 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication([])
 
     #enable hover state show/hide tracking
-    manager = HoverStateManager()
+    hover = HoverStateManager()
+    
+    #enable hotkeys
+    hotkeys = HotKeyManager()
 
     #load fonts
     QFontDatabase.addApplicationFont("public/fonts/Nunito-VariableFont_wght.ttf")

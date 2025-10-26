@@ -9,3 +9,4 @@ class EActionTypes:
     NEW_FLASHCARD = 8
     SHOW_WIDGET = 9
     HIDE_WIDGET = 10
+    HOTKEY_INPUT = 11

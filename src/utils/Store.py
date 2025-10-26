@@ -127,6 +127,12 @@ class Store(QObject):
                 self.state_changed.emit()
                     
                     
+            case EActionTypes.HOTKEY_INPUT:
+                hotkey_folders = self.state['hotkey_folders']
+                go_to_folder = hotkey_folders[str(payload)]
+                if go_to_folder != 'None':
+                    self.dispatch(EActionTypes.FOLDER_CHANGED,go_to_folder)
+                    
                 
                  
 #Globally accessible store instance

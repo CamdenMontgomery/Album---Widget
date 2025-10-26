@@ -33,6 +33,11 @@ class FolderSelector(QtWidgets.QComboBox, UseStore):
         
     def on_state_changed(self):
         
+        #Update selection if current foler changed
+        if self.currentText() == self.store_.state["current_folder_name"]: return
+        index = self.findText(self.store_.state["current_folder_name"])
+        if index > -1: self.setCurrentIndex(index )
+        
         #Only update if workspace changed to avoid self.clear calling on_folder_changed and resetting the selection for every update to the state
         if self.workspace == self.store_.state["workspace_dir"]: return
         self.workspace = self.store_.state["workspace_dir"]
