@@ -60,7 +60,6 @@ class Store(QObject):
                 #finalize mutation
                 self.state = copy
                 self.state_changed.emit()
-                print(self.state)
                 
             case EActionTypes.FOLDER_CHANGED:
                 #Once a folder is selected the user can start working
@@ -68,7 +67,6 @@ class Store(QObject):
                 copy['current_folder_name'] = payload
                 copy['ready'] = True
                 self.state = copy  
-                print('e',self.state)
                 self.state_changed.emit()
             
             case EActionTypes.HIDE_WIDGET:
@@ -100,12 +98,14 @@ class Store(QObject):
             case EActionTypes.NEW_FLASHCARD:
                 if not self.state['ready']: return
                 save_path = os.path.join(self.state['workspace_dir'],self.state['current_folder_name'])
+                print('new flashy')
                 self.flashcard = Flashcard(path=save_path)
+                print('fl',self.flashcard)
                 self.flashcard.show()
+                print('n flashy')
                 
             #Toggle whether current folder is in the hotkeys or not
             case EActionTypes.TOGGLE_PIN:
-                
                 hotkey_folders = self.state['hotkey_folders']
                 current_folder = self.state['current_folder_name']
                 folders = list(hotkey_folders.values())
@@ -123,16 +123,20 @@ class Store(QObject):
                     copy['hotkey_folders'][str(index + 1)] = current_folder
                     self.state = copy   
                     
-                print(self.state)
                 self.state_changed.emit()
                     
                     
-            case EActionTypes.HOTKEY_INPUT:
+            case EActionTypes.FOLDER_HOTKEY:
                 hotkey_folders = self.state['hotkey_folders']
                 go_to_folder = hotkey_folders[str(payload)]
                 if go_to_folder != 'None':
                     self.dispatch(EActionTypes.FOLDER_CHANGED,go_to_folder)
                     
+            case EActionTypes.TOOL_HOTKEY:
+                match (payload):
+                    case 'z': self.dispatch(EActionTypes.BEGIN_SNAPSHOT, None)
+                    case 'x': self.dispatch(EActionTypes.OPEN_NOTES, None)
+                    case 'c': self.dispatch(EActionTypes.NEW_FLASHCARD, None)
                 
                  
 #Globally accessible store instance
