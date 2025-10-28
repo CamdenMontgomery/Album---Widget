@@ -66,12 +66,14 @@ QMainWindow#MainWindow {
     background-color: transparent;
     border: none;
     color: #444444;
-    padding: 5px;
+    padding-left: 10px;
     font-weight: 800;
     font-family: 'Nunito';
     font-size: 14px;
-    border-bottom: 4px solid #a9f58c66;
+    border: 1px solid #f5f5f5;
+    border-bottom: 2px solid #F58B66;
     width: 168px;
+    max-height: 34px;
 }
 
 
@@ -201,7 +203,7 @@ QMainWindow#MainWindow {
     color: #444444;
     text-align: left;
     spacing: 20px;
-    min-width: 160px;
+    min-width: 250px;
     border-radius: 4px;
     padding: 5px;
 }

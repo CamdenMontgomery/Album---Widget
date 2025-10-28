@@ -14,7 +14,7 @@ class WorkspaceButton(QtWidgets.QPushButton, UseStore):
         
         self.setIcon(QtGui.QIcon("public/icons/workspace.svg"))
         self.setIconSize(QSize(24, 24))
-        self.setText("Select Workspace")
+        self.setText("   Open Workspace")
         self.setStatusTip("Toolbar Button")
         self.setCursor(Qt.PointingHandCursor)
         
@@ -30,7 +30,7 @@ class WorkspaceButton(QtWidgets.QPushButton, UseStore):
         current_workspace = self.store_.state['workspace_dir']
         if current_workspace:
             workspace_name = current_workspace.split('/')[-1]
-            self.setText('Workspace: ' + workspace_name.capitalize())
+            self.setText('   Workspace: ' + workspace_name.capitalize())
         else:
-            self.setText("Select Workspace")
+            self.setText("   Open Workspace")
         

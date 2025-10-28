@@ -30,7 +30,7 @@ class Widget(QtWidgets.QMainWindow, UseStore):
 
         self.setWindowTitle("Album")
         
-        self.resize(1377, 100)
+        self.resize(1467, 100)
         screen = QApplication.primaryScreen().geometry()
         self.move(screen.width() * 0.5 - self.width() * 0.5, screen.height() * 0.8 - self.height() * 0.5)
         
