@@ -12,7 +12,7 @@ class HotKeyDisplay(QtWidgets.QWidget, UseStore):
         self.layout = QtWidgets.QHBoxLayout(self)
         
         
-        self.label = QtWidgets.QLabel('...', self)
+        self.label = QtWidgets.QLabel('', self)
         self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label.setObjectName("HotKeyDisplayLabel")
         self.layout.addWidget(self.label)
