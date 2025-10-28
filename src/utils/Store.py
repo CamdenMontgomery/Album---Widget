@@ -13,7 +13,7 @@ MODEL = {
     "workspace_dir": None,
     "workspace_folders": [],
     "current_folder_name": None,
-    "hotkey_folders": {'1': 'None', '2': 'None', '3': 'None', '4': 'None', '5': 'None'},
+    "hotkey_folders": {'1': '', '2': '', '3': '', '4': '', '5': ''},
     "show_widget": True
 }
 
@@ -114,11 +114,11 @@ class Store(QObject):
                 if current_folder in folders:
                     index = folders.index(current_folder)
                     copy = self.state.copy()
-                    copy['hotkey_folders'][str(index + 1)] = "None"
+                    copy['hotkey_folders'][str(index + 1)] = ""
                     self.state = copy   
                      
                 else:
-                    index = folders.index("None")
+                    index = folders.index("")
                     copy = self.state.copy()
                     copy['hotkey_folders'][str(index + 1)] = current_folder
                     self.state = copy   
@@ -129,7 +129,7 @@ class Store(QObject):
             case EActionTypes.FOLDER_HOTKEY:
                 hotkey_folders = self.state['hotkey_folders']
                 go_to_folder = hotkey_folders[str(payload)]
-                if go_to_folder != 'None':
+                if go_to_folder != '':
                     self.dispatch(EActionTypes.FOLDER_CHANGED,go_to_folder)
                     
             case EActionTypes.TOOL_HOTKEY:

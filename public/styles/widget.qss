@@ -5,10 +5,8 @@ QMainWindow#MainWindow {
 
 #Toolbar {
     background-color: #ffffff;
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 8px;
     color: #292A2B;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
 }
 
 #Separator{
@@ -69,7 +67,7 @@ QMainWindow#MainWindow {
     border: none;
     color: #444444;
     padding: 5px;
-    font-weight: 900;
+    font-weight: 800;
     font-family: 'Nunito';
     font-size: 14px;
     border-bottom: 4px solid #a9f58c66;
@@ -115,7 +113,8 @@ QMainWindow#MainWindow {
     background-color: #F4F4F4;
     border-radius: 4px;
     max-height: 34px;
-    max-width: 34px;
+
+    min-width: 100px;
 
 }
 
@@ -123,7 +122,7 @@ QMainWindow#MainWindow {
     font-family: 'Nunito', sans-serif;
     font-size: 12px;
     font-weight: 900;
-    color: #F4F4F4;
+    color: #444444;
 }
 
 #HotKeyIcon{
@@ -156,7 +155,7 @@ QMainWindow#MainWindow {
 #HotKeyDisplayLabel{
     font-family: 'Nunito', sans-serif;
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 700;
     color: #a7a7a7;
 }
 
@@ -191,8 +190,8 @@ QMainWindow#MainWindow {
 #WorkspaceButton{
     background-color: transparent;
     font-family: 'Nunito', sans-serif;
-    font-size: 13px;
-    font-weight: 900;
+    font-size: 14px;
+    font-weight: 1000;
     color: #444444;
     text-align: left;
     spacing: 20px;

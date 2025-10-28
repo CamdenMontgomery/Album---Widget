@@ -18,6 +18,8 @@ class WorkspaceButton(QtWidgets.QPushButton, UseStore):
         self.setStatusTip("Toolbar Button")
         self.setCursor(Qt.PointingHandCursor)
         
+
+        
         self.clicked.connect(self.trigger)
         
     def trigger(self):
