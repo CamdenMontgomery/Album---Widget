@@ -6,7 +6,8 @@ from utils.styleloader import loadStylesheetsFromFolder
 from view.windows.Widget import Widget
 from PySide6.QtGui import QFontDatabase, QFont
 from utils.summon import HoverStateManager
-
+from utils.basepath import BASE_PATH
+from os import path
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
@@ -20,10 +21,12 @@ if __name__ == "__main__":
     hotkeys = HotKeyManager()
 
     #load fonts
-    QFontDatabase.addApplicationFont("public/fonts/Nunito-VariableFont_wght.ttf")
+    font_path = path.join(BASE_PATH,"public","fonts","Nunito-VariableFont_wght.ttf")
+    QFontDatabase.addApplicationFont(font_path)
     
     #load styles
-    style = loadStylesheetsFromFolder("public/styles")
+    style_path = path.join(BASE_PATH,"public","styles")
+    style = loadStylesheetsFromFolder(style_path)
     app.setStyleSheet(style)
     
     #activate main window

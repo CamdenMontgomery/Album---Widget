@@ -9,3 +9,7 @@ venv/
 # OS files
 .DS_Store
 Thumbs.db
+
+#Build Artifacts
+build/
+dist/

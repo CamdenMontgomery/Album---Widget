@@ -1,5 +1,9 @@
 from PySide6 import QtWidgets, QtGui
 from PySide6.QtCore import QSize, QPoint, Qt
+from utils.basepath import BASE_PATH
+from os import path
+
+ICON_PATH = path.join(BASE_PATH,"public","icons","grab_handle.svg")
 
 class GrabHandle(QtWidgets.QPushButton):
     def __init__(self, parent: QtWidgets.QWidget):

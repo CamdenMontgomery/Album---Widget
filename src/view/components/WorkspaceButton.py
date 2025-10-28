@@ -3,16 +3,19 @@ from enums.EActionTypes import EActionTypes
 from utils.Store import store
 from PySide6.QtCore import QSize
 from PySide6.QtCore import Qt
-
+from utils.basepath import BASE_PATH
+from os import path
 from utils.UseStore import UseStore
 
+
+ICON_PATH = path.join(BASE_PATH,"public","icons","workspace.svg")
 
 class WorkspaceButton(QtWidgets.QPushButton, UseStore): 
     def __init__(self):
         super().__init__("", None)
         self.setObjectName("WorkspaceButton")
         
-        self.setIcon(QtGui.QIcon("public/icons/workspace.svg"))
+        self.setIcon(QtGui.QIcon(ICON_PATH))
         self.setIconSize(QSize(24, 24))
         self.setText("   Open Workspace")
         self.setStatusTip("Toolbar Button")

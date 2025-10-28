@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QApplication, QPushButton, QFileDialog
 from enums.EActionTypes import EActionTypes
 import os
 
-from utils.persist import getGlobalConfigsRef, getStateFromGlobalConfigs
+from utils.persist import getGlobalConfigsRef, getLocalConfigsRef, getStateFromConfigs
 from view.windows.Flashcard import Flashcard
 from view.windows.Note import Note
 from view.windows.Snipping import SnippingOverlay
@@ -29,13 +29,12 @@ class Store(QObject):
     def __init__(self):
         super().__init__()
         self.state = MODEL.copy()
-        self.state = getStateFromGlobalConfigs()
+        self.state = getStateFromConfigs()
         print(self.state)
         
         #store references to global and local persistence files
         self.global_configs = getGlobalConfigsRef()
-        print(self.global_configs)
-        self.local_configs = None
+        self.local_configs = getLocalConfigsRef()
         
         self.state_changed.emit()
             
@@ -130,7 +129,7 @@ class Store(QObject):
                     copy = self.state.copy()
                     copy['hotkey_folders'][str(index + 1)] = ""
                     self.state = copy   
-                     
+                             
                 else:
                     index = folders.index("")
                     copy = self.state.copy()
@@ -138,6 +137,7 @@ class Store(QObject):
                     self.state = copy   
                     
                 self.state_changed.emit()
+                self.local_configs.setValue("hotkey_folders",self.state['hotkey_folders'])
                     
                     
             case EActionTypes.FOLDER_HOTKEY:

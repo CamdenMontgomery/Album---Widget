@@ -14,33 +14,43 @@
 #global files will be read when the global state Store initialized
 #local files will be read when the workspace changes
 from PySide6.QtCore import QCoreApplication, QSettings
-
+import os
 
 def getGlobalConfigsRef():
     QCoreApplication.setOrganizationName("Hermit")
     QCoreApplication.setApplicationName("Album")   
-
     return QSettings()
 
-#Returns state object omitting locally dependent fields like hotkey_folders 
-def getStateFromGlobalConfigs():
-    QCoreApplication.setOrganizationName("Hermit")
-    QCoreApplication.setApplicationName("Album")   
+
+#relies on global configs being up to date to return the proper information
+def getLocalConfigsRef():
+
+    global_config = getGlobalConfigsRef()
+    workspace_path = global_config.value("workspace_dir")
     
-    settings = QSettings()    
+    
+    if workspace_path:
+        path = os.path.join(workspace_path,"settings.ini")
+        local_config = QSettings(path, QSettings.IniFormat)
+        return local_config
+    
+    return None
+
+#build and return state object from global and local configs
+def getStateFromConfigs():
+
+    settings = getGlobalConfigsRef()   
+    
+    workspace_dir = settings.value("workspace_dir")
+    workspace_folders = settings.value("workspace_folders")
+    current_folder_name = settings.value("current_folder_name")
+    hotkey_folders = getLocalConfigsRef().value("hotkey_folders") or {'1': '', '2': '', '3': '', '4': '', '5': ''}
+
     return {
-        "workspace_dir": settings.value("workspace_dir"),
-        "workspace_folders": settings.value("workspace_folders"),
-        "current_folder_name": settings.value("current_folder_name"),
-        "hotkey_folders": {'1': '', '2': '', '3': '', '4': '', '5': ''},
+        "workspace_dir": workspace_dir,
+        "workspace_folders": workspace_folders,
+        "current_folder_name": current_folder_name,
+        "hotkey_folders": hotkey_folders,
         "show_widget": True
     }
     
-def setGlobalConfigsFromState(state):
-    QCoreApplication.setOrganizationName("Hermit")
-    QCoreApplication.setApplicationName("Album")   
-    
-    settings = QSettings()   
-    settings.setValue("workspace_dir", state["workspace_dir"])
-    settings.setValue("workspace_folders", state["workspace_folders"])
-    settings.setValue("current_folder_name", state["current_folder_name"])
