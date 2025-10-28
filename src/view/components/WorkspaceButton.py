@@ -22,6 +22,7 @@ class WorkspaceButton(QtWidgets.QPushButton, UseStore):
         
         self.clicked.connect(self.trigger)
         
+        
     def trigger(self):
         store.dispatch(EActionTypes.OPEN_WORKSPACE_SELECTOR, None)
         

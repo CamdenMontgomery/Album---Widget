@@ -10,6 +10,8 @@ from utils.summon import HoverStateManager
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
+    
+
 
     #enable hover state show/hide tracking
     hover = HoverStateManager()

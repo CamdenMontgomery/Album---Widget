@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QApplication, QPushButton, QFileDialog
 from enums.EActionTypes import EActionTypes
 import os
 
+from utils.persist import getGlobalConfigsRef, getStateFromGlobalConfigs
 from view.windows.Flashcard import Flashcard
 from view.windows.Note import Note
 from view.windows.Snipping import SnippingOverlay
@@ -28,6 +29,15 @@ class Store(QObject):
     def __init__(self):
         super().__init__()
         self.state = MODEL.copy()
+        self.state = getStateFromGlobalConfigs()
+        print(self.state)
+        
+        #store references to global and local persistence files
+        self.global_configs = getGlobalConfigsRef()
+        print(self.global_configs)
+        self.local_configs = None
+        
+        self.state_changed.emit()
             
     def dispatch(self, action_type, payload):
         self._controller(action_type, payload)
@@ -41,7 +51,7 @@ class Store(QObject):
                 copy = self.state.copy()
                 
                 #open file dialog to select folder
-                folder_path = QFileDialog.getExistingDirectory(None, "Select Directory", "")
+                folder_path = QFileDialog.getExistingDirectory(None, "Select Directory", copy["workspace_dir"] or "")
                 
                 if not folder_path:
                     return
@@ -59,6 +69,8 @@ class Store(QObject):
                 
                 #finalize mutation
                 self.state = copy
+                self.global_configs.setValue("workspace_dir",folder_path)
+                self.global_configs.setValue("workspace_folders",folders)
                 self.state_changed.emit()
                 
             case EActionTypes.FOLDER_CHANGED:
@@ -67,7 +79,9 @@ class Store(QObject):
                 copy['current_folder_name'] = payload
                 copy['ready'] = True
                 self.state = copy  
+                
                 self.state_changed.emit()
+                self.global_configs.setValue("current_folder_name",payload)
             
             case EActionTypes.HIDE_WIDGET:
                 copy = self.state.copy()

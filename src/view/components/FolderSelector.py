@@ -3,12 +3,16 @@ from PySide6.QtGui import Qt
 from enums.EActionTypes import EActionTypes
 from utils.UseStore import UseStore
 
+
+#Notes
+# uses internal items array to track the actual names of the folders in the list so it can display formatted text in the combobox and dropdown
 class FolderSelector(QtWidgets.QComboBox, UseStore):
     def __init__(self, parent=None):
         super().__init__(parent)
         
         #track workspace to only update upon change
         self.workspace = None
+        self.items = [] #Track the original values of the items 
         
         self.setObjectName("FolderSelector")
 
@@ -25,7 +29,7 @@ class FolderSelector(QtWidgets.QComboBox, UseStore):
 
 
     def on_folder_changed(self, index):
-        folder = self.itemText(index)
+        folder = self.items[index]
         self.store_.dispatch(EActionTypes.FOLDER_CHANGED, folder)
         print('folder',folder)
         print('chg',self.store_.state)
@@ -39,8 +43,10 @@ class FolderSelector(QtWidgets.QComboBox, UseStore):
         #Only update if workspace changed to avoid self.clear calling on_folder_changed and resetting the selection for every update to the state
         if self.workspace != self.store_.state["workspace_dir"]:
             #Populate selector with workspace folders
+            self.items = []
             self.clear()
             for folder in self.store_.state["workspace_folders"]:
+                self.items.append(folder)
                 self.addItem(format(folder))
         self.workspace = self.store_.state["workspace_dir"]
         
@@ -49,8 +55,8 @@ class FolderSelector(QtWidgets.QComboBox, UseStore):
         #Update selection if current foler changed
         current_folder = self.store_.state["current_folder_name"]
         
-        if current_folder != None and self.currentText() != format(current_folder):       
-            index = self.findText(format(current_folder))
+        if current_folder != None and  self.currentText() != format(current_folder):    
+            index = self.items.index(current_folder)
             if index > -1: self.setCurrentIndex(index)
         
 
