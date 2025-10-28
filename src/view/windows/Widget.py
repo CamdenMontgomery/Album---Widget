@@ -3,6 +3,7 @@ import random
 from PySide6 import QtCore, QtWidgets, QtGui
 
 from utils.ToolBarButtonFactory import ToolBarButtonFactory
+from utils.shadows import MidshadeShadow
 from view.components.WorkspaceButton import WorkspaceButton
 from view.components.FolderSelector import FolderSelector
 from view.components.HotkeyDisplay import HotKeyDisplay
@@ -54,13 +55,8 @@ class Widget(QtWidgets.QMainWindow, UseStore):
         self.toolbar_layout.setSpacing(10)
         self.container_layout.addWidget(self.toolbar)
         
-        self.shadow = QGraphicsDropShadowEffect()
-        self.shadow.setBlurRadius(50)  # Adjust the blur radius as needed
-        self.shadow.setXOffset(0)      # Adjust the X offset as needed
-        self.shadow.setYOffset(5)      # Adjust the Y offset as needed
-        self.shadow.setColor(QColor(150, 150, 150, 100))
 
-
+        self.shadow = MidshadeShadow()
         self.toolbar.setGraphicsEffect(self.shadow)
         
         
