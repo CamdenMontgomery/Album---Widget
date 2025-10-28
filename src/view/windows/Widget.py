@@ -30,7 +30,7 @@ class Widget(QtWidgets.QMainWindow, UseStore):
 
         self.setWindowTitle("Album")
         
-        #self.resize(1290, 24)
+        self.resize(1377, 100)
         screen = QApplication.primaryScreen().geometry()
         self.move(screen.width() * 0.5 - self.width() * 0.5, screen.height() * 0.8 - self.height() * 0.5)
         
@@ -199,4 +199,5 @@ class Widget(QtWidgets.QMainWindow, UseStore):
         self.anim_group.addAnimation(self.move_anim)
         self.anim_group.addAnimation(self.fade_anim)
         self.anim_group.start()
+        print(self.width(),self.height())
 
