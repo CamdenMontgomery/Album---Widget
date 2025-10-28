@@ -4,7 +4,7 @@ QMainWindow#MainWindow {
 }
 
 #Toolbar {
-    background-color: #ffffff;
+    background-color: #f9ffffff;
     border-radius: 8px;
     color: #292A2B;
 }
@@ -110,7 +110,7 @@ QMainWindow#MainWindow {
 
 
 #HotKeySlot{
-    background-color: #F4F4F4;
+    background-color: #f3f4f4f4;
     border-radius: 4px;
     max-height: 34px;
 
