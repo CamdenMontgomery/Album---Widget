@@ -14,7 +14,7 @@ class GrabHandle(QtWidgets.QPushButton):
 
         self.setObjectName("GrabHandle")
         self.setCursor(Qt.CursorShape.OpenHandCursor)
-        self.setIcon(QtGui.QIcon("public/icons/grab_handle.svg"))
+        self.setIcon(QtGui.QIcon(ICON_PATH))
         self.setIconSize(QSize(24, 24))
         
         
