@@ -8,6 +8,7 @@ class HotKeySlots(QtWidgets.QWidget):
         
         self.layout = QtWidgets.QHBoxLayout(self)
         
+        
         self.slot1 = HotKeySlot('1', self)
         self.layout.addWidget(self.slot1)
         
@@ -23,6 +24,8 @@ class HotKeySlots(QtWidgets.QWidget):
         self.slot5 = HotKeySlot('5', self)
         self.layout.addWidget(self.slot5)
             
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.layout.setSpacing(10)
 
         
 

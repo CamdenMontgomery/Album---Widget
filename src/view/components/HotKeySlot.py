@@ -12,6 +12,7 @@ class HotKeySlot(QtWidgets.QWidget, UseStore):
         self.key = key
         self.layout = QtWidgets.QHBoxLayout(self)
         
+        
         self.icon = QtWidgets.QLabel(key, self)
         self.icon.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.icon.setObjectName("HotKeyIcon")
@@ -21,6 +22,8 @@ class HotKeySlot(QtWidgets.QWidget, UseStore):
         self.label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label.setObjectName("HotKeyLabel")
         self.layout.addWidget(self.label)
+        
+        
         
 
         
@@ -38,6 +41,7 @@ class HotKeySlot(QtWidgets.QWidget, UseStore):
         self.icon.style().polish(self.icon)
         
     def on_state_changed(self):
-        self.label.setText(self.store_.state['hotkey_folders'][self.key])
+        self.label.setText(self.store_.state['hotkey_folders'][self.key].capitalize())
         is_active = self.store_.state['hotkey_folders'][self.key] == self.store_.state['current_folder_name']
-        self.setStyleFromState(is_active)
+        self.setStyleFromState(is_active)        
+            
