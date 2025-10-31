@@ -3,23 +3,24 @@ from view.components.ToolbarButton import ToolbarButton
 from utils.basepath import BASE_PATH
 from os import path
 
+
 class ToolBarButtonFactory:
     def __init__(self, prefix_path=path.join(BASE_PATH, 'public','icons')):
         self.prefix_path = prefix_path
         
     def createAddFolderButton(self):
-        return ToolbarButton(path.join(self.prefix_path,"add_folder.svg"), EActionTypes.ADD_FOLDER)
+        return ToolbarButton(path.join(self.prefix_path,"add_folder.svg"), EActionTypes.ADD_FOLDER, "Add Folder To Workspace")
     
     def createRemoveFolderButton(self):
-        return ToolbarButton(path.join(self.prefix_path,"remove_folder.svg"), EActionTypes.REMOVE_FOLDER)
+        return ToolbarButton(path.join(self.prefix_path,"remove_folder.svg"), EActionTypes.REMOVE_FOLDER, "Remove Folder From Workspace")
     
     
     def createSnapshotButton(self):
-        return ToolbarButton(path.join(self.prefix_path,"take_snapshot.svg"), EActionTypes.BEGIN_SNAPSHOT)
+        return ToolbarButton(path.join(self.prefix_path,"take_snapshot.svg"), EActionTypes.BEGIN_SNAPSHOT, "Snip Screen (Alt + Z)")
     
     def createNoteButton(self):
-        return ToolbarButton(path.join(self.prefix_path,"open_note.svg"), EActionTypes.OPEN_NOTES)
+        return ToolbarButton(path.join(self.prefix_path,"open_note.svg"), EActionTypes.OPEN_NOTES, "Create Note (Alt + X)")
     
     def createFlashcardButton(self):
-        return ToolbarButton(path.join(self.prefix_path,"make_flashcard.svg"), EActionTypes.NEW_FLASHCARD)
+        return ToolbarButton(path.join(self.prefix_path,"make_flashcard.svg"), EActionTypes.NEW_FLASHCARD, "Create Flashcard (Alt + C)")
     

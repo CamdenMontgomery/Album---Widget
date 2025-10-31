@@ -1,6 +1,6 @@
 from pathlib import Path
 from PySide6.QtCore import QObject, Signal
-from PySide6.QtWidgets import QApplication, QPushButton, QFileDialog
+from PySide6.QtWidgets import QApplication, QPushButton, QFileDialog, QDialog
 from enums.EActionTypes import EActionTypes
 import os
 
@@ -8,6 +8,9 @@ from utils.persist import getGlobalConfigsRef, getLocalConfigsRef, getStateFromC
 from view.windows.Flashcard import Flashcard
 from view.windows.Note import Note
 from view.windows.Snipping import SnippingOverlay
+from view.components.Dialog import Dialog, DIALOG_TYPES
+
+
 
 MODEL = {
     "ready" : False,
@@ -151,7 +154,39 @@ class Store(QObject):
                     case 'z': self.dispatch(EActionTypes.BEGIN_SNAPSHOT, None)
                     case 'x': self.dispatch(EActionTypes.OPEN_NOTES, None)
                     case 'c': self.dispatch(EActionTypes.NEW_FLASHCARD, None)
+                    
+            
+                    
+            case EActionTypes.REMOVE_FOLDER:
                 
+                title = "Delete This Folder?"
+                message = f"""Doing this will permanently delete the '{self.state['current_folder_name']}' folder from this workspace and from this computer. This is irreversable. Are you sure you want to remove '{ self.state['current_folder_name'] }'?"""
+                confirm_text = "Yes, Delete It"
+                reject_text = "No, Keep It"
+                
+                self.warning = Dialog(title, message, confirm_text, reject_text, DIALOG_TYPES.WARNING)
+                self.result = self.warning.exec()
+                
+                if self.result == QDialog.DialogCode.Accepted:
+                    print("Delete it")
+                else:
+                    print("Dont do it")
+                    
+                    
+            case EActionTypes.ADD_FOLDER:
+                
+                title = "New Folder"
+                message = "What is the name of this folder? It should be named relative to the topic you are studying."
+                confirm_text = "Create"
+                reject_text = "Cancel"
+                
+                input = Dialog(title, message, confirm_text, reject_text, DIALOG_TYPES.INPUT)
+                result = input.exec()
+                
+                if result == QDialog.DialogCode.Accepted:
+                    print("Create " + input.getResultingText())
+                else:
+                    print("Dont do it")
                  
 #Globally accessible store instance
 store = Store()
