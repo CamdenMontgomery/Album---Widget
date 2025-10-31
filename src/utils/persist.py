@@ -30,7 +30,7 @@ def getLocalConfigsRef():
     
     
     if workspace_path:
-        path = os.path.join(workspace_path,"settings.ini")
+        path = os.path.join(workspace_path,"workspace.ini")
         local_config = QSettings(path, QSettings.IniFormat)
         return local_config
     
