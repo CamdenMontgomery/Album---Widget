@@ -20,15 +20,21 @@ from utils.UseStore import UseStore
 from PySide6.QtGui import QPainter, QColor, QPen
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QGraphicsDropShadowEffect
 
+from utils.basepath import BASE_PATH
+from os import path
+
 
 
 from PySide6.QtCore import QPropertyAnimation, QRect, QEasingCurve, QPoint, QParallelAnimationGroup
+
+ICON_PATH = path.join(BASE_PATH,"public","icons","app.svg")
 
 class Widget(QtWidgets.QMainWindow, UseStore):
     def __init__(self):
         super().__init__()
 
         self.setWindowTitle("Album")
+        self.setWindowIcon(QtGui.QIcon(ICON_PATH))
         
         self.resize(1467, 100)
         screen = QApplication.primaryScreen().geometry()
