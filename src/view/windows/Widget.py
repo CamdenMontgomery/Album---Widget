@@ -22,6 +22,10 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QGraphicsD
 from PySide6.QtCore import QSize, Qt
 
 
+from PySide6.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QMainWindow, QLabel
+from PySide6.QtGui import QIcon, QAction
+from PySide6.QtCore import Qt
+
 from utils.basepath import BASE_PATH
 from os import path
 
@@ -31,6 +35,7 @@ from PySide6.QtCore import QPropertyAnimation, QRect, QEasingCurve, QPoint, QPar
 
 ICON_PATH = path.join(BASE_PATH,"public","icons","app.svg")
 CLOSE_ICON = path.join(BASE_PATH,"public","icons","close.svg")
+APP_ICON = path.join(BASE_PATH,"public","icons","app.svg")
 
 
 class Widget(QtWidgets.QMainWindow, UseStore):
@@ -135,7 +140,7 @@ class Widget(QtWidgets.QMainWindow, UseStore):
         self.close_button.setIcon(QtGui.QIcon(CLOSE_ICON))
         self.close_button.setIconSize(QSize(24, 24))
         self.close_button.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.close_button.clicked.connect(self.close)
+        self.close_button.clicked.connect(QApplication.instance().quit)
         self.toolbar_layout.addWidget(self.close_button)
         
         self.container_layout.addWidget(self.toolbar)
@@ -145,6 +150,28 @@ class Widget(QtWidgets.QMainWindow, UseStore):
         
         self.store_.hide_widget.connect(self.slide_out)
         self.store_.show_widget.connect(self.slide_in)
+        
+        
+        self.create_tray_icon()
+
+    def create_tray_icon(self):
+        # Create the system tray icon
+        self.tray_icon = QSystemTrayIcon(self)
+        self.tray_icon.setIcon(QIcon(APP_ICON)) 
+        self.tray_icon.setToolTip("Album")
+
+        # Create a context menu for the tray icon
+        tray_menu = QMenu()
+
+        # Add actions to the menu
+        quit_action = QAction("Quit", self)
+        quit_action.triggered.connect(QApplication.instance().quit)
+        tray_menu.addAction(quit_action)
+
+        self.tray_icon.setContextMenu(tray_menu)
+
+        # Show the tray icon
+        self.tray_icon.show()
         
 
         
