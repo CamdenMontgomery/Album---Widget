@@ -184,7 +184,19 @@ class Store(QObject):
                 result = input.exec()
                 
                 if result == QDialog.DialogCode.Accepted:
-                    print("Create " + input.getResultingText())
+                    
+                    folder_name = input.getResultingText().replace('.','')#Break any extensions the user tries to force
+                    full_path = os.path.join(self.state['workspace_dir'],folder_name)
+                    try:
+                        os.mkdir(full_path)
+                        print(f"Directory '{full_path}' created successfully.")
+                    except FileExistsError:
+                        print(f"Directory '{full_path}' already exists.")
+                    except OSError as e:
+                        print(f"Error creating directory: {e}")
+                    
+                #Change Current Folder
+                    
                 else:
                     print("Dont do it")
                  
