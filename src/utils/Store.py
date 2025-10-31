@@ -46,6 +46,9 @@ class Store(QObject):
         
         
     def _controller(self, action_type, payload):
+        
+
+        
         match action_type:
             case EActionTypes.OPEN_WORKSPACE_SELECTOR: 
                 
@@ -185,17 +188,33 @@ class Store(QObject):
                 
                 if result == QDialog.DialogCode.Accepted:
                     
+                    workspace_dir = self.state['workspace_dir']
                     folder_name = input.getResultingText().replace('.','')#Break any extensions the user tries to force
-                    full_path = os.path.join(self.state['workspace_dir'],folder_name)
+                    full_path = os.path.join(workspace_dir,folder_name)
+                    
                     try:
                         os.mkdir(full_path)
                         print(f"Directory '{full_path}' created successfully.")
+                        
+                        #prepare for mutation
+                        copy = self.state.copy()
+                        
+                        contents = os.listdir(workspace_dir)
+                        folders = [name for name in contents if os.path.isdir(os.path.join(workspace_dir, name))]
+                        copy["workspace_folders"] = folders     
+                        copy['current_folder_name'] = folder_name
+                
+                        #finalize mutation
+                        self.state = copy
+                        self.global_configs.setValue("workspace_folders",folders)
+                        self.state_changed.emit()
+                        
+                        
                     except FileExistsError:
                         print(f"Directory '{full_path}' already exists.")
                     except OSError as e:
                         print(f"Error creating directory: {e}")
                     
-                #Change Current Folder
                     
                 else:
                     print("Dont do it")

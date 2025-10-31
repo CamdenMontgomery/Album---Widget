@@ -41,8 +41,10 @@ def getStateFromConfigs():
 
     settings = getGlobalConfigsRef()   
     
+
     workspace_dir = settings.value("workspace_dir")
-    workspace_folders = settings.value("workspace_folders")
+    contents = os.listdir(workspace_dir)
+    workspace_folders = [name for name in contents if os.path.isdir(os.path.join(workspace_dir, name))]
     current_folder_name = settings.value("current_folder_name")
     hotkey_folders = getLocalConfigsRef().value("hotkey_folders") or {'1': '', '2': '', '3': '', '4': '', '5': ''}
 

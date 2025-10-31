@@ -10,8 +10,7 @@ class FolderSelector(QtWidgets.QComboBox, UseStore):
     def __init__(self, parent=None):
         super().__init__(parent)
         
-        #track workspace to only update upon change
-        self.workspace = None
+
         self.items = [] #Track the original values of the items 
         
         self.setObjectName("FolderSelector")
@@ -40,19 +39,18 @@ class FolderSelector(QtWidgets.QComboBox, UseStore):
         #Text in the selector will be in this format so to compare the text in th selector we must format what were comparing it to
         def format(text): return './' + text.capitalize()
         
-        #Only update if workspace changed to avoid self.clear calling on_folder_changed and resetting the selection for every update to the state
-        if self.workspace != self.store_.state["workspace_dir"]:
+        #Only update if folder list changed to avoid self.clear calling on_folder_changed and resetting the selection for every update to the state
+        if self.items != self.store_.state['workspace_folders']:
             #Populate selector with workspace folders
             self.items = []
             self.clear()
             for folder in self.store_.state["workspace_folders"]:
                 self.items.append(folder)
                 self.addItem(format(folder))
-        self.workspace = self.store_.state["workspace_dir"]
         
 
         
-        #Update selection if current foler changed
+        #Update selection if current folder changed
         current_folder = self.store_.state["current_folder_name"]
         
         if current_folder != None and  self.currentText() != format(current_folder):    
