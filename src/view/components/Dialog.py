@@ -64,6 +64,7 @@ class Dialog(QtWidgets.QDialog):
         self.close_button.setObjectName("DialogCloseButton")
         self.close_button.setIcon(QtGui.QIcon(CLOSE_ICON))
         self.close_button.setIconSize(QSize(24, 24))
+        self.close_button.setCursor(Qt.CursorShape.PointingHandCursor)
         self.close_button.clicked.connect(self.reject)
         self._title_layout.addWidget(self.close_button)
         

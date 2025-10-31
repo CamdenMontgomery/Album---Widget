@@ -230,3 +230,17 @@ QMainWindow#MainWindow {
 #WorkspaceButton:hover{
     background-color: #f5f5f5;
 }
+
+
+
+#MainCloseButton{
+    background: #F4F4F4;
+    min-width: 34px;
+    min-height: 34px;
+    border: none;
+    border-radius: 4px;
+}
+
+#MainCloseButton:hover {
+    background: transparent;
+}

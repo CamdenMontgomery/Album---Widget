@@ -19,6 +19,8 @@ from PySide6.QtWidgets import QApplication
 from utils.UseStore import UseStore
 from PySide6.QtGui import QPainter, QColor, QPen
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QGraphicsDropShadowEffect
+from PySide6.QtCore import QSize, Qt
+
 
 from utils.basepath import BASE_PATH
 from os import path
@@ -28,6 +30,8 @@ from os import path
 from PySide6.QtCore import QPropertyAnimation, QRect, QEasingCurve, QPoint, QParallelAnimationGroup
 
 ICON_PATH = path.join(BASE_PATH,"public","icons","app.svg")
+CLOSE_ICON = path.join(BASE_PATH,"public","icons","close.svg")
+
 
 class Widget(QtWidgets.QMainWindow, UseStore):
     def __init__(self):
@@ -36,7 +40,7 @@ class Widget(QtWidgets.QMainWindow, UseStore):
         self.setWindowTitle("Album")
         self.setWindowIcon(QtGui.QIcon(ICON_PATH))
         
-        self.resize(1467, 100)
+        self.resize(1524, 100)
         screen = QApplication.primaryScreen().geometry()
         self.move(screen.width() * 0.5 - self.width() * 0.5, screen.height() * 0.8 - self.height() * 0.5)
         
@@ -121,24 +125,20 @@ class Widget(QtWidgets.QMainWindow, UseStore):
         self.hotkey_slots = HotKeySlots()
         self.toolbar_layout.addWidget(self.hotkey_slots)
         
+
+        #--Separator Bar
+        self.toolbar_layout.addWidget(Separator())
+
+        #----Close Button
+        self.close_button = QtWidgets.QPushButton()
+        self.close_button.setObjectName("MainCloseButton")
+        self.close_button.setIcon(QtGui.QIcon(CLOSE_ICON))
+        self.close_button.setIconSize(QSize(24, 24))
+        self.close_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.close_button.clicked.connect(self.close)
+        self.toolbar_layout.addWidget(self.close_button)
+        
         self.container_layout.addWidget(self.toolbar)
-        
-        #Bottom Half
-        self.workspace_container = QtWidgets.QWidget()
-        self.workspace_container.setObjectName("WorkspaceContainer")
-        self.workspace_layout = QtWidgets.QHBoxLayout(self.workspace_container)
-        
-        self.workspace_label = WorkspaceLabel()
-        self.workspace_layout.addWidget(self.workspace_label)
-        
-        self.workspace_layout.addStretch()
-        
-        self.workspace_change_button = WorkspaceChangeButton()
-        self.workspace_layout.addWidget(self.workspace_change_button)
-    
-    
-        #self.container_layout.addWidget(self.workspace_container)
-        
         self.setCentralWidget(self.container)
         
         
