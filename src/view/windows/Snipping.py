@@ -72,7 +72,14 @@ class SnippingOverlay(QtWidgets.QWidget):
         timestamp = now.strftime("%H-%M-%S_%Y-%m-%d")
         filename = timestamp + ".png"
         
+        #Ensure snapshots subdirectory exists
+        subdirectory = os.path.join(self.save_path,'Snapshots')
+        if not os.path.exists(subdirectory):
+            os.mkdir(subdirectory)
+        
+        file_path = os.path.join(subdirectory, filename)
+        
         #save to png
-        snippet.save(os.path.join(self.save_path, filename), 'PNG')
+        snippet.save(file_path, 'PNG')
         
         self.close()

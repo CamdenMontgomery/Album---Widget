@@ -84,8 +84,14 @@ class Note(QtWidgets.QWidget):
         
         #generate filename
         chunk = contents[0:10]
-        filename = chunk + ".txt"
-        file_path = os.path.join(self.save_path, filename)
+        filename = chunk + ".sticky.txt"
+        
+        #Ensure sticky notes subdirectory exists
+        subdirectory = os.path.join(self.save_path,'Sticky Notes')
+        if not os.path.exists(subdirectory):
+            os.mkdir(subdirectory)
+        
+        file_path = os.path.join(subdirectory, filename)
         
         #save to txt
         with open(file_path, "w") as file:

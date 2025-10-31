@@ -93,6 +93,7 @@ class Flashcard(QtWidgets.QWidget):
         question = cleanFlashcardContent(self.question_text.toPlainText())
         answer = cleanFlashcardContent(self.answer_text.toPlainText())
         
+        
         #Get Filepath to save to in this folder
         file_name = "export.quizlet.txt" 
         file_path = os.path.join(self.save_path, file_name)
