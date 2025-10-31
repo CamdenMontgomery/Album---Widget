@@ -10,6 +10,12 @@ from view.components.GrabHandle import GrabHandle
 
 from enum import Enum, unique
 
+from utils.basepath import BASE_PATH
+from os import path
+
+CLOSE_ICON = path.join(BASE_PATH,"public","icons","close.svg")
+
+
 @unique
 class DIALOG_TYPES(Enum):
     WARNING = 1
@@ -56,7 +62,7 @@ class Dialog(QtWidgets.QDialog):
         #----Close Button
         self.close_button = QtWidgets.QPushButton()
         self.close_button.setObjectName("DialogCloseButton")
-        self.close_button.setIcon(QtGui.QIcon("public/icons/close.svg"))
+        self.close_button.setIcon(QtGui.QIcon(CLOSE_ICON))
         self.close_button.setIconSize(QSize(24, 24))
         self.close_button.clicked.connect(self.reject)
         self._title_layout.addWidget(self.close_button)

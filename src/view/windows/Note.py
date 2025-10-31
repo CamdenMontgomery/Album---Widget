@@ -7,8 +7,11 @@ from datetime import datetime
 from PySide6.QtWidgets import QWidget, QGraphicsDropShadowEffect
 
 from view.components.GrabHandle import GrabHandle 
+from utils.basepath import BASE_PATH
+from os import path
 
-
+CLOSE_ICON = path.join(BASE_PATH,"public","icons","close.svg")
+CONFIRM_ICON = path.join(BASE_PATH,"public","icons","check.svg")
 
 class Note(QtWidgets.QWidget):
     def __init__(self, path):
@@ -37,7 +40,7 @@ class Note(QtWidgets.QWidget):
         
         #--Confirm Button
         self.confirm_button = QtWidgets.QPushButton()
-        self.confirm_button.setIcon(QtGui.QIcon("public/icons/check.svg"))
+        self.confirm_button.setIcon(QtGui.QIcon(CONFIRM_ICON))
         self.confirm_button.setIconSize(QSize(24, 24))
         self.confirm_button.setObjectName('NoteConfirmButton')
         self.confirm_button.setCursor(Qt.PointingHandCursor)
@@ -46,7 +49,7 @@ class Note(QtWidgets.QWidget):
         
         #--Close Button
         self.close_button = QtWidgets.QPushButton()
-        self.close_button.setIcon(QtGui.QIcon("public/icons/close.svg"))
+        self.close_button.setIcon(QtGui.QIcon(CLOSE_ICON))
         self.close_button.setIconSize(QSize(24, 24))
         self.close_button.setObjectName('NoteCloseButton')
         self.close_button.setCursor(Qt.PointingHandCursor)
