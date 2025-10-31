@@ -182,12 +182,22 @@ class Store(QObject):
                         os.rmdir(full_path)
                         print(f"Directory '{full_path}' removed successfully.")
                         
-                        #reload folders and current workspace
+                        #reload folders, hotkeys and current workspace
                         copy = self.state.copy()
                         
                         contents = os.listdir(workspace_dir)
                         folders = [name for name in contents if os.path.isdir(os.path.join(workspace_dir, name))]
                         copy["workspace_folders"] = folders     
+                        
+                        hotkey_folders = self.state['hotkey_folders']
+                        current_folder = self.state['current_folder_name']
+                        folders = list(hotkey_folders.values())
+                        
+                        #If hotkey exists, remove it
+                        if current_folder in folders:
+                            index = folders.index(current_folder)
+                            copy['hotkey_folders'][str(index + 1)] = ""
+                        
                         copy['current_folder_name'] = folders[0] or ''
                 
                         #finalize mutation
