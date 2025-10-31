@@ -167,11 +167,40 @@ class Store(QObject):
                 confirm_text = "Yes, Delete It"
                 reject_text = "No, Keep It"
                 
-                self.warning = Dialog(title, message, confirm_text, reject_text, DIALOG_TYPES.WARNING)
-                self.result = self.warning.exec()
+                warning = Dialog(title, message, confirm_text, reject_text, DIALOG_TYPES.WARNING)
+                result = warning.exec()
                 
-                if self.result == QDialog.DialogCode.Accepted:
-                    print("Delete it")
+                if result == QDialog.DialogCode.Accepted:
+                    
+                    workspace_dir = self.state['workspace_dir']
+                    folder_name = self.state['current_folder_name']
+                    full_path = os.path.join(workspace_dir,folder_name)
+                    
+                    try:
+                        if not os.path.exists(full_path): raise FileNotFoundError
+                        
+                        os.rmdir(full_path)
+                        print(f"Directory '{full_path}' removed successfully.")
+                        
+                        #reload folders and current workspace
+                        copy = self.state.copy()
+                        
+                        contents = os.listdir(workspace_dir)
+                        folders = [name for name in contents if os.path.isdir(os.path.join(workspace_dir, name))]
+                        copy["workspace_folders"] = folders     
+                        copy['current_folder_name'] = folders[0] or ''
+                
+                        #finalize mutation
+                        self.state = copy
+                        self.global_configs.setValue("workspace_folders",folders)
+                        self.state_changed.emit()
+                        
+                        
+                    except FileExistsError:
+                        print(f"Directory '{full_path}' doesn't exists.")
+                    except OSError as e:
+                        print(f"Error removing directory: {e}")
+                    
                 else:
                     print("Dont do it")
                     
@@ -196,7 +225,7 @@ class Store(QObject):
                         os.mkdir(full_path)
                         print(f"Directory '{full_path}' created successfully.")
                         
-                        #prepare for mutation
+                        #reload folders and current workspace
                         copy = self.state.copy()
                         
                         contents = os.listdir(workspace_dir)
