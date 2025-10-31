@@ -70,12 +70,21 @@ class Store(QObject):
                 folders = [name for name in contents if os.path.isdir(os.path.join(folder_path, name))]
                 copy["workspace_folders"] = folders
                 
+                #Update global configs so we can accurately work with local configs
+                self.global_configs.setValue("workspace_dir",folder_path)
+                self.global_configs.setValue("workspace_folders",folders)
                 
+                self.local_configs = getLocalConfigsRef() #Reload local configs in new workspace
+                
+                #get hotkeys
+                print(self.local_configs.value('hotkey_folders'))
+                copy['hotkey_folders'] = self.local_configs.value('hotkey_folders') or MODEL['hotkey_folders']
+                self.local_configs.setValue('hotkey_folders', copy['hotkey_folders']) #update hotkeys 
+                print(self.state['hotkey_folders'])
                 
                 #finalize mutation
                 self.state = copy
-                self.global_configs.setValue("workspace_dir",folder_path)
-                self.global_configs.setValue("workspace_folders",folders)
+
                 self.state_changed.emit()
                 
             case EActionTypes.FOLDER_CHANGED:
