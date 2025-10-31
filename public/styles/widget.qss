@@ -78,6 +78,19 @@ QMainWindow#MainWindow {
 
 
 
+#FolderSelector QAbstractItemView{
+    border-radius: 2px;
+    background-color: #252525;
+    color: #f0f0f0;
+    selection-background-color: #F58B66;
+    selection-color: #ffffff
+}
+
+
+
+
+
+
 #HotKeySlotActive{
     background-color: #F58B66;
     min-width: 100px;
