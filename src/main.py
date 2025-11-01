@@ -1,37 +1,46 @@
 import sys
-import random
-from PySide6 import QtCore, QtWidgets, QtGui
-from utils.hotkeys import HotKeyManager
-from utils.styleloader import loadStylesheetsFromFolder
-from view.windows.Widget import Widget
-from PySide6.QtGui import QFontDatabase, QFont
-from utils.summon import HoverStateManager
-from utils.basepath import BASE_PATH
 from os import path
+from PySide6 import QtWidgets
+from PySide6.QtGui import QFontDatabase
 
-if __name__ == "__main__":
+# Utility imports
+from utils.summon import HoverStateManager
+from utils.hotkeys import HotKeyManager
+from utils.basepath import BASE_PATH
+from utils.styleloader import loadStylesheetsFromFolder
+
+# View imports
+from view.windows.Widget import Widget
+
+def main():
+    """
+    Initializes the application, sets up necessary utilities, 
+    loads fonts and styles, and launches the main window.
+    """
+    # Create the Qt application
     app = QtWidgets.QApplication([])
-    
 
-
-    #enable hover state show/hide tracking
+    # Enable hover state tracking (for hover-based UI features)
     hover = HoverStateManager()
     
-    #enable hotkeys
+    # Enable global hotkey functionality
     hotkeys = HotKeyManager()
 
-    #load fonts
-    font_path = path.join(BASE_PATH,"public","fonts","Nunito-VariableFont_wght.ttf")
+    # Load custom font
+    font_path = path.join(BASE_PATH, "public", "fonts", "Nunito-VariableFont_wght.ttf")
     QFontDatabase.addApplicationFont(font_path)
     
-    #load styles
-    style_path = path.join(BASE_PATH,"public","styles")
+    # Load and apply stylesheets from the styles folder
+    style_path = path.join(BASE_PATH, "public", "styles")
     style = loadStylesheetsFromFolder(style_path)
     app.setStyleSheet(style)
     
-    #activate main window
+    # Create and show the main application window
     widget = Widget()
     widget.show()
 
-
+    # Start the application's event loop
     sys.exit(app.exec())
+
+if __name__ == "__main__":
+    main()

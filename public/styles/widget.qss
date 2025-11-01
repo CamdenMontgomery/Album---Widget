@@ -28,13 +28,7 @@ QMainWindow#MainWindow {
 
 }
 
-#workspaceLabel{
-    color: #7A7A7A;
-    font-size: 10px;
-    font-weight: 600;
-    font-family: 'Nunito';
-    margin-left: 10px;
-}
+
 
 
 #ToolBarButton{

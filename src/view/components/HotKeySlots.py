@@ -2,30 +2,33 @@ from PySide6 import QtWidgets
 from view.components.HotKeySlot import HotKeySlot
 
 class HotKeySlots(QtWidgets.QWidget):
+    """
+    A widget that holds multiple hotkey slots (buttons) to trigger folder changes.
+    It dynamically creates a set of HotKeySlot widgets and displays them in a horizontal layout.
+    """
+    
     def __init__(self, parent=None):
+        """
+        Initializes the HotKeySlots widget, creating five HotKeySlot buttons by default.
+        
+        Args:
+            parent (QtWidgets.QWidget, optional): The parent widget. Defaults to None.
+        """
         super().__init__(parent)
+        
         self.setObjectName("HotKeySlots")
         
+        # Create a horizontal layout to hold the hotkey slots
         self.layout = QtWidgets.QHBoxLayout(self)
         
+        # List of keys (hotkeys) to generate slots for
+        keys = ['1', '2', '3', '4', '5']
         
-        self.slot1 = HotKeySlot('1', self)
-        self.layout.addWidget(self.slot1)
+        # Dynamically create HotKeySlot widgets for each key
+        for key in keys:
+            slot = HotKeySlot(key, self)
+            self.layout.addWidget(slot)
         
-        self.slot2 = HotKeySlot('2', self)
-        self.layout.addWidget(self.slot2)
-        
-        self.slot3 = HotKeySlot('3', self)
-        self.layout.addWidget(self.slot3)
-        
-        self.slot4 = HotKeySlot('4', self)
-        self.layout.addWidget(self.slot4)
-        
-        self.slot5 = HotKeySlot('5', self)
-        self.layout.addWidget(self.slot5)
-            
+        # Set layout properties for spacing and margins
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.layout.setSpacing(10)
-
-        
-

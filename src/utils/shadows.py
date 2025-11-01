@@ -1,12 +1,28 @@
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QGraphicsDropShadowEffect
+from PySide6.QtWidgets import QGraphicsDropShadowEffect
 from PySide6.QtGui import QColor
-      
-SHADE = 0
-        
+
+# Define a constant for the shade intensity (can be used for other shadows too)
+SHADE_INTENSITY = 0
+BLUR_RADIUS = 25
+X_OFFSET = 0
+Y_OFFSET = 0
+ALPHA = 50  # Transparency level for the shadow color (0-255)
+
 class MidshadeShadow(QGraphicsDropShadowEffect):
+    """
+    A custom shadow effect with mid-level shading, designed for UI elements.
+
+    Inherits from QGraphicsDropShadowEffect to provide a soft, diffused shadow
+    around a widget. The shadow can be customized by adjusting the parameters.
+    """
+
     def __init__(self):
         super().__init__()
-        self.setBlurRadius(25)  # Adjust the blur radius as needed
-        self.setXOffset(0)      # Adjust the X offset as needed
-        self.setYOffset(0)      # Adjust the Y offset as needed
-        self.setColor(QColor(SHADE, SHADE, SHADE, 50))
+
+        # Set the shadow properties
+        self.setBlurRadius(BLUR_RADIUS)  # Set the blur radius for the shadow
+        self.setXOffset(X_OFFSET)        # Set the horizontal offset (X direction)
+        self.setYOffset(Y_OFFSET)        # Set the vertical offset (Y direction)
+        
+        # Set the shadow color with customizable transparency
+        self.setColor(QColor(SHADE_INTENSITY, SHADE_INTENSITY, SHADE_INTENSITY, ALPHA))

@@ -1,37 +1,28 @@
-import sys
-import random
-from PySide6 import QtCore, QtWidgets, QtGui
+# --- Standard Library ---
+from os import path
 
-from utils.ToolBarButtonFactory import ToolBarButtonFactory
-from utils.shadows import MidshadeShadow
+# --- PySide6 ---
+from PySide6 import QtCore, QtWidgets, QtGui
+from PySide6.QtCore import (
+    QSize, Qt, QPropertyAnimation, QEasingCurve, QPoint, QParallelAnimationGroup
+)
+from PySide6.QtGui import QIcon, QAction
+from PySide6.QtWidgets import QApplication, QSystemTrayIcon, QMenu
+
+# --- Project: view.components ---
 from view.components.WorkspaceButton import WorkspaceButton
 from view.components.FolderSelector import FolderSelector
 from view.components.HotkeyDisplay import HotKeyDisplay
 from view.components.PinButton import PinButton
 from view.components.Separator import Separator
-from view.components.WorkspaceChangeButton import WorkspaceChangeButton
-
-from view.components.WorkspaceLabel import WorkspaceLabel
-from view.components.actions.ANewFolder import ANewFolder
-from utils.Store import store
 from view.components.HotKeySlots import HotKeySlots
-from PySide6.QtWidgets import QApplication
+
+# --- Project: utils ---
+from utils.ToolBarButtonFactory import ToolBarButtonFactory
+from utils.shadows import MidshadeShadow
 from utils.UseStore import UseStore
-from PySide6.QtGui import QPainter, QColor, QPen
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QGraphicsDropShadowEffect
-from PySide6.QtCore import QSize, Qt
-
-
-from PySide6.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QMainWindow, QLabel
-from PySide6.QtGui import QIcon, QAction
-from PySide6.QtCore import Qt
-
 from utils.basepath import BASE_PATH
-from os import path
 
-
-
-from PySide6.QtCore import QPropertyAnimation, QRect, QEasingCurve, QPoint, QParallelAnimationGroup
 
 ICON_PATH = path.join(BASE_PATH,"public","icons","app.svg")
 CLOSE_ICON = path.join(BASE_PATH,"public","icons","close.svg")
@@ -232,5 +223,5 @@ class Widget(QtWidgets.QMainWindow, UseStore):
         self.anim_group.addAnimation(self.move_anim)
         self.anim_group.addAnimation(self.fade_anim)
         self.anim_group.start()
-        print(self.width(),self.height())
+ 
 
