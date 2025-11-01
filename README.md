@@ -1,6 +1,12 @@
 ![Frame 33 (1)](https://github.com/user-attachments/assets/0340ea31-3fc5-4138-92f5-58924ad3b589)
 
 # Album - Productivity Widget
+![Release](https://img.shields.io/github/v/release/CamdenMontgomery/Album-Desktop-Widget?sort=semver)
+![License](https://img.shields.io/github/license/CamdenMontgomery/Album-Desktop-Widget)
+![Last Commit](https://img.shields.io/github/last-commit/CamdenMontgomery/Album-Desktop-Widget)
+![Top Language](https://img.shields.io/github/languages/top/CamdenMontgomery/Album-Desktop-Widget)
+![Open Issues](https://img.shields.io/github/issues/CamdenMontgomery/Album-Desktop-Widget)
+![Open PRs](https://img.shields.io/github/issues-pr/CamdenMontgomery/Album-Desktop-Widget)
 
 > A Camera, Sticky Notes, and Flash Cards all in your computer's back pocket.
 
@@ -38,7 +44,10 @@ Every element of the interface was refined with small, deliberate choices — li
 ## Tech Stack
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Qt](https://img.shields.io/badge/Qt-%23217346.svg?style=for-the-badge&logo=Qt&logoColor=white)
-![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+![Pynput](https://img.shields.io/badge/pynput-34b7f1?style=for-the-badge&logo=python&logoColor=white)
+![PyInstaller](https://img.shields.io/badge/pyinstaller-2e2b7f?style=for-the-badge&logo=python&logoColor=white)
+![Inno Setup](https://img.shields.io/badge/Inno%20Setup-9f1f2d?style=for-the-badge&logo=inno-setup&logoColor=white)
+
 
 Album is written in **Python**, using **PySide6 (Qt for Python)** and the **QtWidgets** module for its UI. It follows an **MVC-inspired structure**, with a global store managing state changes across components. This approach keeps UI and logic cleanly separated while maintaining lightweight communication between parts of the application.
 
@@ -76,6 +85,7 @@ Version 1 will include:
 * A Windows installer built through Inno Setup.
 
 ### Supported Platforms
+![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
 Currently developed and tested on **Windows 10 (x64)**. Other Windows versions may work, but only this configuration has been verified.
 
