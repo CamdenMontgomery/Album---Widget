@@ -3,6 +3,7 @@ from PySide6.QtCore import QObject, Signal
 from PySide6.QtWidgets import QFileDialog, QDialog, QApplication
 from enums.EActionTypes import EActionTypes
 import os
+import shutil
 
 from utils.persist import getGlobalConfigsRef, getLocalConfigsRef, getStateFromConfigs
 from view.windows.Flashcard import Flashcard
@@ -200,7 +201,7 @@ class Store(QObject):
                         if not os.path.exists(full_path):
                             raise FileNotFoundError
 
-                        os.rmdir(full_path)
+                        shutil.rmtree(full_path)
 
                         # Reload workspace folders after deletion
                         copy = self.state.copy()

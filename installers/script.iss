@@ -2,11 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Album"
-#define MyAppVersion "1"
+#define MyAppVersion "1.0.0"
 #define MyAppPublisher "Hermit"
 #define MyAppExeName "Album.exe"
 #define MySetupIcon "..\public\icons\app.ico"
-#define MySetupName "Album Windows - Installer"
+#define MySetupName "Album_1.0.0_Windows_x64-Installer"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
