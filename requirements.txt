@@ -1,0 +1,12 @@
+# --- Core GUI Framework ---
+PySide6>=6.5.0,<6.10.0
+
+# --- Tooltip Utility ---
+pyqttooltip>=1.0.0,<2.0.0
+
+# --- Keyboard and Mouse Input ---
+pynput>=1.7.6,<2.0.0
+
+# --- Optional: Packaging Tool ---
+# Used only for building standalone executables of Album
+# pyinstaller>=6.0.0
